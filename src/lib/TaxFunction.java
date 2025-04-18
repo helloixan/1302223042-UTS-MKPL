@@ -23,17 +23,13 @@ public class TaxFunction {
 			numberOfChildren = 3;
 		}
 		
-		if (isMarried) {
+		if (isMarried && tax >= 0 ) {
 			tax = (int) Math.round(0.05 * (((monthlySalary + otherMonthlyIncome) * numberOfMonthWorking) - deductible - (54000000 + 4500000 + (numberOfChildren * 1500000))));
-		}else {
+		} else if (!isMarried && tax >= 0) {
 			tax = (int) Math.round(0.05 * (((monthlySalary + otherMonthlyIncome) * numberOfMonthWorking) - deductible - 54000000));
 		}
 		
-		if (tax < 0) {
-			return 0;
-		}else {
-			return tax;
-		}
+		return tax;
 			 
 	}
 	
