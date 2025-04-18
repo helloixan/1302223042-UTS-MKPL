@@ -15,18 +15,19 @@ public class TaxFunction {
 	 */
 	
 	
-	public static int calculateTax(int monthlySalary, int otherMonthlyIncome, int numberOfMonthWorking, int deductible, boolean isMarried, int numberOfChildren) {
+	public static int calculateTax(Employee employee, int numberOfMonthWorking) {
 		
 		int tax = 0;
+		int numberOfChildren = employee.getNumberOfChildren();
 		
 		if (numberOfChildren > 3) {
 			numberOfChildren = 3;
 		}
 		
-		if (isMarried && tax >= 0 ) {
-			tax = (int) Math.round(0.05 * (((monthlySalary + otherMonthlyIncome) * numberOfMonthWorking) - deductible - (54000000 + 4500000 + (numberOfChildren * 1500000))));
-		} else if (!isMarried && tax >= 0) {
-			tax = (int) Math.round(0.05 * (((monthlySalary + otherMonthlyIncome) * numberOfMonthWorking) - deductible - 54000000));
+		if (employee.getStatusMarried() && tax >= 0 ) {
+			tax = (int) Math.round(0.05 * (((employee.getMonthlySalary() + employee.getOtherMonthlyIncome()) * numberOfMonthWorking) - employee.getAnnualDeductible() - (54000000 + 4500000 + (numberOfChildren * 1500000))));
+		} else if (!employee.getStatusMarried() && tax >= 0) {
+			tax = (int) Math.round(0.05 * (((employee.getMonthlySalary() + employee.getOtherMonthlyIncome()) * numberOfMonthWorking) - employee.getAnnualDeductible() - 54000000));
 		}
 		
 		return tax;

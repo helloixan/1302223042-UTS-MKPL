@@ -85,6 +85,26 @@ public class Employee {
 		childNames.add(childName);
 		childIdNumbers.add(childIdNumber);
 	}
+
+	public int getNumberOfChildren() {
+		return childNames.size();
+	}
+
+	public boolean getStatusMarried() {
+		return spouseIdNumber.equals("");
+	}
+
+	public int getMonthlySalary() {
+		return monthlySalary;
+	}
+
+	public int getOtherMonthlyIncome() {
+		return otherMonthlyIncome;
+	}
+
+	public int getAnnualDeductible() {
+		return annualDeductible;
+	}
 	
 	public int getAnnualIncomeTax() {
 		
@@ -97,6 +117,6 @@ public class Employee {
 			monthWorkingInYear = 12;
 		}
 		
-		return TaxFunction.calculateTax(this);
+		return TaxFunction.calculateTax(this, monthWorkingInYear);
 	}
 }
